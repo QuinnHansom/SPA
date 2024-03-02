@@ -1,0 +1,40 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// 定义一个动态路由参数组件
+function UserProfile({ match }) {
+  return (
+    <div>
+      <h2>User Profile</h2>
+      <p>Username: {match.params.username}</p>
+    </div>
+  );
+}
+
+// 应用程序根组件
+function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/profile/john">John's Profile</Link>
+            </li>
+            <li>
+              <Link to="/profile/jane">Jane's Profile</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route path="/" exact render={() => <h1>Welcome to Home Page!</h1>} />
+        <Route path="/profile/:username" component={UserProfile} />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
